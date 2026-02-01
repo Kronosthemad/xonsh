@@ -5,7 +5,7 @@ xonsh
 
     <img src="https://avatars.githubusercontent.com/u/17418188?s=200&v=4" alt="Xonsh shell icon." align="left" width="100px">
 
-**Xonsh** is a Python-powered shell. Full-featured and cross-platform. The language is a superset of Python 3.6+ with additional shell primitives. The name Xonsh should be pronounced like "consh" - a softer form of the word "conch" (🐚, ``@``), referring to the world of command shells.
+**Xonsh** is a Python-powered shell. Full-featured, cross-platform and AI-friendly. The language is a superset of Python 3 with additional shell primitives. The name Xonsh should be pronounced like "consh" - a softer form of the word "conch" (🐚, ``@``), referring to the world of command shells.
 
 .. raw:: html
 
@@ -47,9 +47,9 @@ xonsh
 
             $PATH.append('/tmp')
 
-            p'/etc/passwd'.read_text().find('root')
+            p'/etc/passwd'.read_text().find('usr')
 
-            xontrib load dalias  # plugin
+            xontrib load dalias  # extension
             $(@json docker ps --format json)['ID']
 
       -  .. code-block:: python
@@ -74,11 +74,11 @@ xonsh
             def nudf(cmd):
                 return @.imp.pandas.DataFrame(
                   @.imp.json.loads(
-                    $(nu -c @(cmd + ' | to json'))
-                  )
-                )
-
+                  $(nu -c @(cmd+'| to json'))))
             nudf!(ls -la)
+
+            aliases['ai'] = 'ollama run llama3'
+            ai! how to remove images in docker
 
 
       -  .. code-block:: python
@@ -126,23 +126,9 @@ If you like xonsh, :star: the repo and spread the word about xonsh.
 First steps
 ***********
 
-We're refactoring the docs about xonsh installation so you can try the new way:
-
-* Install xonsh using `xonsh-install <https://github.com/anki-code/xonsh-install>`_
-* `Draft "Xonsh Installation General Guide" <https://github.com/xonsh/xonsh/blob/refactor_install_docs/docs/install.rst>`_
-
-The old way is to install xonsh from pip:
-
-.. code-block:: shell
-
-    python -m pip install 'xonsh[full]'
-
-Visit https://xon.sh for more information:
-
-- `Installation <https://xon.sh/contents.html#installation>`_ - using `xonsh-install <https://github.com/anki-code/xonsh-install>`_, packages, docker or AppImage.
+- `Installation <https://github.com/xonsh/xonsh/blob/refactor_install_docs/docs/install.rst>`_ - isolated environment, package, container or portable AppImage.
 - `Tutorial <https://xon.sh/tutorial.html>`_ - step by step introduction in xonsh.
-
-Some beginners find the `xonsh cheatsheet <https://github.com/anki-code/xonsh-cheatsheet>`_ a helpful place to start.
+- `Cheat sheet <https://github.com/anki-code/xonsh-cheatsheet>`_ - some beginners may find this a helpful place to start.
 
 Extensions
 **********
@@ -162,6 +148,7 @@ Projects that use xonsh or compatible
 - `zoxide <https://github.com/ajeetdsouza/zoxide>`_: A smarter cd command.
 - `gitsome <https://github.com/donnemartin/gitsome>`_: Supercharged Git/shell autocompleter with GitHub integration.
 - `xxh <https://github.com/xxh/xxh>`_: Using xonsh wherever you go through the SSH.
+- `kash <https://github.com/jlevy/kash>`_: The knowledge agent shell.
 - `Snakemake <https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#xonsh>`_: A workflow management system to create reproducible and scalable data analyses.
 - `any-nix-shell <https://github.com/haslersn/any-nix-shell>`_: xonsh support for the ``nix run`` and ``nix-shell`` environments of the Nix package manager.
 - `lix <https://github.com/lix-project/lix>`_: A modern, delicious implementation of the Nix package manager.
@@ -175,7 +162,7 @@ Jupyter-based interactive notebooks via `xontrib-jupyter <https://github.com/xon
 - `euporie <https://github.com/joouha/euporie>`_: Terminal based interactive computing environment.
 - `Jupytext <https://jupytext.readthedocs.io/>`_: Clear and meaningful diffs when doing Jupyter notebooks version control.
 
-Compile, packaging or accelerate xonsh:
+Compiling, packaging, or accelerating xonsh:
 
 - `AppImage <https://github.com/appimage>`_ is a format for distributing Linux applications and can be used to `create a standalone xonsh package <https://xon.sh/appimage.html>`_.
 - `Nuitka <https://github.com/Nuitka/Nuitka>`_ is an optimizing Python compiler that can `build a native xonsh binary <https://github.com/xonsh/xonsh/issues/2895#issuecomment-3665753657>`_.
