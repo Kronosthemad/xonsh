@@ -113,8 +113,8 @@ def test_capture_always(
         # Enable capfd for function aliases:
         monkeypatch.setattr(STDOUT_DISPATCHER, "default", sys.stdout)
         if alias_type == "func":
-            xonsh_session.aliases["tst"] = (
-                lambda: run_subproc([first_cmd], "hiddenobject") and None
+            xonsh_session.aliases["tst"] = lambda: (
+                run_subproc([first_cmd], "hiddenobject") and None
             )  # Don't return a value
         elif alias_type == "exec":
             first_cmd = " ".join(repr(arg) for arg in first_cmd)
@@ -677,6 +677,7 @@ def test_auto_cd(xession, tmpdir):
 @pytest.mark.parametrize(
     "inp,exp",
     [
+        ["echo command", ["xonsh", "{file}", "--arg", "1"]],
         ["#!/bin/bash", ["/bin/bash", "{file}", "--arg", "1"]],
         ["#!/bin/bash\necho 1", ["/bin/bash", "{file}", "--arg", "1"]],
         ["#!/bin/bash\n\necho 1", ["/bin/bash", "{file}", "--arg", "1"]],
@@ -695,3 +696,9 @@ def test_get_script_subproc_command_shebang(tmpdir, inp, exp):
     file.chmod(0o755)
     cmd = get_script_subproc_command(file_str, ["--arg", "1"])
     assert [c if c != file_str else "{file}" for c in cmd] == exp
+
+
+def test_redirect_without_left_part():
+    with pytest.raises(XonshError) as expected:
+        SubprocSpec.build([(">", "1.txt")])
+    assert "subprocess mode: command is empty" in str(expected.value)

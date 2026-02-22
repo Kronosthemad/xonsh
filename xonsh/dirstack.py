@@ -145,8 +145,6 @@ on_chdir(olddir: str, newdir: str) -> None
 
 Fires when the current directory is changed for any reason.
 
-Example:
-
 .. code-block:: python
 
     @events.on_chdir
