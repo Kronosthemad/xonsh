@@ -148,9 +148,12 @@ def transform_command(src, show_diff=True):
         lst = src
         srcs = events.on_transform_command.fire(cmd=src)
         for s in srcs:
+            if s is None:
+                continue
             if s != lst:
                 src = s
                 break
+
         i += 1
         if i == limit:
             print_exception(
@@ -290,12 +293,14 @@ class Shell:
                 ts=[time.time(), None],
                 locked=True,
                 filename=env.get("XONSH_HISTORY_FILE", None),
+                sessionid=XSH.sessionid,
             )
             env["XONSH_HISTORY_FILE"] = hist.filename
         else:
             XSH.history = hist = DummyHistory()
             env["XONSH_HISTORY_FILE"] = None
 
+        XSH.interface.history = XSH.history
         shell_type = self.choose_shell_type(shell_type, env)
 
         self.shell_type = env["SHELL_TYPE"] = shell_type

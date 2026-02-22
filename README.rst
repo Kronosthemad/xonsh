@@ -5,7 +5,7 @@ xonsh
 
     <img src="https://avatars.githubusercontent.com/u/17418188?s=200&v=4" alt="Xonsh shell icon." align="left" width="100px">
 
-**Xonsh** is a Python-powered shell. Full-featured, cross-platform and AI-friendly. The language is a superset of Python 3 with additional shell primitives. The name Xonsh should be pronounced like "consh" - a softer form of the word "conch" (🐚, ``@``), referring to the world of command shells.
+**Xonsh** is a Python-powered shell. Full-featured, cross-platform and AI-friendly. The language is a superset of Python 3 with seamless integration of shell functionality and commands. The name Xonsh should be pronounced like "consh" — a softer form of the word "conch" (🐚, ``@``), referring to the world of command shells.
 
 .. raw:: html
 
@@ -50,7 +50,7 @@ xonsh
             p'/etc/passwd'.read_text().find('usr')
 
             xontrib load dalias  # extension
-            $(@json docker ps --format json)['ID']
+            $(@json podman ps --format json)['ID']
 
       -  .. code-block:: python
 
@@ -78,7 +78,7 @@ xonsh
             nudf!(ls -la)
 
             aliases['ai'] = 'ollama run llama3'
-            ai! how to remove images in docker
+            ai! how to remove images in podman
 
 
       -  .. code-block:: python
@@ -159,7 +159,7 @@ Projects that use xonsh or compatible
 Jupyter-based interactive notebooks via `xontrib-jupyter <https://github.com/xonsh/xontrib-jupyter>`_:
 
 - `Jupyter and JupyterLab <https://jupyter.org/>`_: Interactive notebook platform.
-- `euporie <https://github.com/joouha/euporie>`_: Terminal based interactive computing environment.
+- `Euporie <https://github.com/joouha/euporie>`_: Terminal based interactive computing environment.
 - `Jupytext <https://jupytext.readthedocs.io/>`_: Clear and meaningful diffs when doing Jupyter notebooks version control.
 
 Compiling, packaging, or accelerating xonsh:
@@ -182,7 +182,7 @@ The xonsh shell is developed by a community of volunteers. There are a few ways 
 - Test xonsh with compiler, interpreter, optimizer and report upstream issues (e.g. `Nuitka <https://github.com/xonsh/xonsh/issues/2895#issuecomment-3665753657>`_, `RustPython <https://github.com/xonsh/xonsh/issues/5082#issue-1611837062>`_).
 - Design more `logos and images <https://github.com/anki-code/xonsh-logo>`_, improve `xonsh website <https://xon.sh/>`_ (`src <https://github.com/xonsh/xonsh/blob/12f12ce94f1b6c92218e22fbdaaa846e16ac8b2d/docs/_templates/index.html#L9>`_).
 - `Become a sponsor to xonsh <https://github.com/sponsors/xonsh>`_.
-- Spread the good word about xonsh in the world by sharing news and notes about xonsh.
+- Spread the good word about xonsh in the world.
 - Give a star to xonsh repository and to `xontribs <https://github.com/topics/xontrib>`_ you like.
 
 We welcome new contributors!
